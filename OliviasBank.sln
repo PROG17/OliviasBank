@@ -5,6 +5,13 @@ VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OliviasBank", "OliviasBank\OliviasBank.csproj", "{3FDCB66E-6782-408D-B45B-952E51D45EEA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CB3A7B04-8D82-4C4E-8947-16FF22D65827}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OliviasBankTest", "OliviasBankTest\OliviasBankTest.csproj", "{C367B9AE-EB9C-4E0E-B2B0-3954290454CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +22,10 @@ Global
 		{3FDCB66E-6782-408D-B45B-952E51D45EEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FDCB66E-6782-408D-B45B-952E51D45EEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FDCB66E-6782-408D-B45B-952E51D45EEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C367B9AE-EB9C-4E0E-B2B0-3954290454CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C367B9AE-EB9C-4E0E-B2B0-3954290454CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C367B9AE-EB9C-4E0E-B2B0-3954290454CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C367B9AE-EB9C-4E0E-B2B0-3954290454CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
