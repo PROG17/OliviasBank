@@ -7,5 +7,8 @@ namespace OliviasBank.Models.BankModels
 {
     public class Account
     {
+        public int Id { get; set; }
+        public decimal Balance { get; set; }
+        public int OwnerId { get; set; }
     }
 }
