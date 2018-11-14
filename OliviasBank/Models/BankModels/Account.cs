@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace OliviasBank.Models.BankModels
 {
-    public class AccountModel
+    public class Account
     {
     }
 }
