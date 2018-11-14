@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OliviasBank.Models.BankViewModels
+namespace OliviasBank.Models.BankModels
 {
-    public class AccountViewModel
+    public class AccountModel
     {
     }
 }
