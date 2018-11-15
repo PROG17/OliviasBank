@@ -20,13 +20,13 @@ namespace OliviasBank.DataLayer
                     {
                         new Account
                         {
-                            Id = 101,
+                            AccountNumber = 101,
                             Balance = 2000,
                             OwnerId = 1
                         },
                         new Account
                         {
-                            Id = 102,
+                            AccountNumber = 102,
                             Balance = 4500,
                             OwnerId = 1
                         }
@@ -40,7 +40,7 @@ namespace OliviasBank.DataLayer
                     {
                         new Account
                         {
-                            Id = 202,
+                            AccountNumber = 202,
                             Balance = 2000,
                             OwnerId = 2
                         }
@@ -54,7 +54,7 @@ namespace OliviasBank.DataLayer
                     {
                         new Account
                         {
-                            Id = 303,
+                            AccountNumber = 303,
                             Balance = 2000,
                             OwnerId = 3
                         }

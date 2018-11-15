@@ -20,13 +20,13 @@
             <td>
                 <table class="table">
                     <tr>
-                        <th>AccountId</th>
+                        <th>Account number</th>
                         <th>Balance</th>
                     </tr>
                     @foreach (var account in customer.AccountList)
                     {
                         <tr>
-                            <td>@account.Id</td>
+                            <td>@account.AccountNumber</td>
                             <td>@account.Balance</td>
                         </tr>
                     }
