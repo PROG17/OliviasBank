@@ -65,32 +65,9 @@ namespace OliviasBank.DataLayer
             return allCustomers;
         }
 
-        
-
-        //public List<Account> GetAccountsForCurrentCustomer(int currentId)
-        //{
-        //    int id = currentId;
-        //    List<Account> accountList = new List<Account>();
-
-        //    switch (id)
-        //    {
-        //        case 1:
-        //            accountList.Add(new Account { Id = 1, Balance = 2000, Owner = })
-        //    }
-        //    int caseSwitch = 1;
-
-        //    switch (caseSwitch)
-        //    {
-        //        case 1:
-        //            Console.WriteLine("Case 1");
-        //            break;
-        //        case 2:
-        //            Console.WriteLine("Case 2");
-        //            break;
-        //        default:
-        //            Console.WriteLine("Default case");
-        //            break;
-        //    }
-        //}
+        public void Deposit(int accountNumber, decimal amountToDeposit)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
