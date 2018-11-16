@@ -4,15 +4,26 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using OliviasBank.DataLayer;
 using OliviasBank.Models;
+using OliviasBank.Models.BankModels;
 
 namespace OliviasBank.Controllers
 {
     public class HomeController : Controller
     {
+        private IBankRepository _bankRepository;
+
+        public HomeController(IBankRepository bankRepository)
+        {
+            _bankRepository = bankRepository;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            List<Customer> allCustomers = _bankRepository.GetAllCustomers();
+
+            return View(allCustomers);
         }
 
         public IActionResult About()
