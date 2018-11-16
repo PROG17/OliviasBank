@@ -8,61 +8,67 @@ namespace OliviasBank.DataLayer
 {
     public class BankRepository : IBankRepository
     {
+        private static List<Customer> _allCustomers;
+
         public List<Customer> GetAllCustomers()
         {
-            var allCustomers = new List<Customer>
+            if (_allCustomers == null)
             {
-                new Customer
+                _allCustomers = new List<Customer>
                 {
-                    Id = 1,
-                    Name = "Olivia Denbu",
-                    AccountList = new List<Account>
+                    new Customer
                     {
-                        new Account
+                        Id = 1,
+                        Name = "Olivia Denbu",
+                        AccountList = new List<Account>
                         {
-                            AccountNumber = 101,
-                            Balance = 2000,
-                            OwnerId = 1
-                        },
-                        new Account
+                            new Account
+                            {
+                                AccountNumber = 101,
+                                Balance = 2000,
+                                OwnerId = 1
+                            },
+                            new Account
+                            {
+                                AccountNumber = 102,
+                                Balance = 4500,
+                                OwnerId = 1
+                            }
+                        }
+                    },
+                    new Customer
+                    {
+                        Id = 2,
+                        Name = "Anna-Maria Nordström",
+                         AccountList = new List<Account>
                         {
-                            AccountNumber = 102,
-                            Balance = 4500,
-                            OwnerId = 1
+                            new Account
+                            {
+                                AccountNumber = 202,
+                                Balance = 2000,
+                                OwnerId = 2
+                            }
+                        }
+                    },
+                    new Customer
+                    {
+                        Id = 3,
+                        Name = "Andreas Blom",
+                         AccountList = new List<Account>
+                        {
+                            new Account
+                            {
+                                AccountNumber = 303,
+                                Balance = 2000,
+                                OwnerId = 3
+                            }
                         }
                     }
-                },
-                new Customer
-                {
-                    Id = 2,
-                    Name = "Anna-Maria Nordström",
-                     AccountList = new List<Account>
-                    {
-                        new Account
-                        {
-                            AccountNumber = 202,
-                            Balance = 2000,
-                            OwnerId = 2
-                        }
-                    }
-                },
-                new Customer
-                {
-                    Id = 3,
-                    Name = "Andreas Blom",
-                     AccountList = new List<Account>
-                    {
-                        new Account
-                        {
-                            AccountNumber = 303,
-                            Balance = 2000,
-                            OwnerId = 3
-                        }
-                    }
-                }
-            };
+                };
 
-            return allCustomers;
+            }
+
+            return _allCustomers;
         }
 
         public void Deposit(int accountNo, decimal amountToDeposit)

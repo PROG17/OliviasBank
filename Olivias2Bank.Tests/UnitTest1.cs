@@ -9,7 +9,7 @@ namespace Olivias2Bank.Tests
     public class UnitTest1
     {
         [TestMethod]
-        public void AfterDepositAccountShouldHaveUpdateBalance()
+        public void AfterDepositAccountShouldHaveUpdateBalanceTest()
         {
             BankRepository bankRepository = new BankRepository();
             Customer oneCustomer = bankRepository.GetAllCustomers().First();
