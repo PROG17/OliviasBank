@@ -65,9 +65,34 @@ namespace OliviasBank.DataLayer
             return allCustomers;
         }
 
-        public void Deposit(int accountNumber, decimal amountToDeposit)
+        public void Deposit(int accountNo, decimal amountToDeposit)
         {
-            throw new NotImplementedException();
+            foreach (var customer in GetAllCustomers())
+            {
+                foreach (var account in customer.AccountList)
+                {
+                    if (account.AccountNumber == accountNo)
+                    {
+                        account.Balance += amountToDeposit;
+                        return;
+                    }
+                }
+            }
         }
+
+        //public void Deposit2(int accountNr, decimal amount)
+        //{
+        //    foreach (var customer in GetAllCustomers())
+        //    {
+        //        foreach (var account in customer.AccountList)
+        //        {
+        //            if (account.AccountNumber == accountNr)
+        //            {
+        //                account.Balance += amount;
+        //                return;
+        //            }
+        //        }
+        //    }
+        //}
     }
 }

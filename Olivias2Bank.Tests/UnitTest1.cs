@@ -28,26 +28,26 @@ namespace Olivias2Bank.Tests
             Assert.AreEqual(expectedResult, result);
         }
 
-        [TestMethod]
-        public void AfterDepositAccountShouldHaveUpdatedBalance2()
-        {
-            //Mening är att vi ska plocka fram ett account
-            var bankRepository = new BankRepository();
-            var oneCustomer = bankRepository.GetAllCustomers().First();
-            var account = oneCustomer.AccountList.First();
+        //[TestMethod]
+        //public void AfterDepositAccountShouldHaveUpdatedBalance2()
+        //{
+        //    //Mening är att vi ska plocka fram ett account
+        //    var bankRepository = new BankRepository();
+        //    var oneCustomer = bankRepository.GetAllCustomers().First();
+        //    var account = oneCustomer.AccountList.First();
 
-            //Kolla vad saldot är
-            var aktuellSaldo = account.Balance;
-            var expectedResult = aktuellSaldo + 100;
+        //    //Kolla vad saldot är
+        //    var aktuellSaldo = account.Balance;
+        //    var expectedResult = aktuellSaldo + 100;
 
-            //Sättta in 100kr
-            bankRepository.Deposit(account.AccountNumber, 100);
+        //    //Sättta in 100kr
+        //    bankRepository.Deposit2(account.AccountNumber, 100);
 
-            //Verifiera att saldot nu är gamla saldo + 100
-            var result = account.Balance;
+        //    //Verifiera att saldot nu är gamla saldo + 100
+        //    var result = account.Balance;
 
-            Assert.AreEqual(expectedResult, result);
-        }
+        //    Assert.AreEqual(expectedResult, result);
+        //}
 
         //[TestMethod]
         //public void AfterWathdraealAccountShouldHaveUpdatedBalance()
