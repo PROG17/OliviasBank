@@ -8,89 +8,105 @@ namespace OliviasBank.DataLayer
 {
     public class BankRepository : IBankRepository
     {
+        //Kommer göra så listan lever jämt. annarskommer listan försvinna (vill den lever mellan våra webanrop)
+        //Det vi säger i containern i startup är att varje gång ngn behäver en IBankRepo så skapa en ny för varje weba. Om man är
+           //inne på en sida o sen går in på nytt så försvinner värdena annars
+        private static List<Customer> _allCustomers;
+
         public List<Customer> GetAllCustomers()
         {
-            var allCustomers = new List<Customer>
+            if (_allCustomers == null)
             {
-                new Customer
+                _allCustomers = new List<Customer>
                 {
-                    Id = 1,
-                    Name = "Olivia Denbu",
-                    AccountList = new List<Account>
+                    new Customer
                     {
-                        new Account
+                        Id = 1,
+                        Name = "Olivia Denbu",
+                        AccountList = new List<Account>
                         {
-                            AccountNumber = 101,
-                            Balance = 2000,
-                            OwnerId = 1
-                        },
-                        new Account
+                            new Account
+                            {
+                                AccountNumber = 101,
+                                Balance = 2000,
+                                OwnerId = 1
+                            },
+                            new Account
+                            {
+                                AccountNumber = 102,
+                                Balance = 4500,
+                                OwnerId = 1
+                            }
+                        }
+                    },
+                    new Customer
+                    {
+                        Id = 2,
+                        Name = "Anna-Maria Nordström",
+                         AccountList = new List<Account>
                         {
-                            AccountNumber = 102,
-                            Balance = 4500,
-                            OwnerId = 1
+                            new Account
+                            {
+                                AccountNumber = 202,
+                                Balance = 2000,
+                                OwnerId = 2
+                            }
+                        }
+                    },
+                    new Customer
+                    {
+                        Id = 3,
+                        Name = "Andreas Blom",
+                         AccountList = new List<Account>
+                        {
+                            new Account
+                            {
+                                AccountNumber = 303,
+                                Balance = 2000,
+                                OwnerId = 3
+                            }
                         }
                     }
-                },
-                new Customer
-                {
-                    Id = 2,
-                    Name = "Anna-Maria Nordström",
-                     AccountList = new List<Account>
-                    {
-                        new Account
-                        {
-                            AccountNumber = 202,
-                            Balance = 2000,
-                            OwnerId = 2
-                        }
-                    }
-                },
-                new Customer
-                {
-                    Id = 3,
-                    Name = "Andreas Blom",
-                     AccountList = new List<Account>
-                    {
-                        new Account
-                        {
-                            AccountNumber = 303,
-                            Balance = 2000,
-                            OwnerId = 3
-                        }
-                    }
-                }
-            };
+                };
 
-            return allCustomers;
+            }
+
+            return _allCustomers;
         }
 
-        
+        public void Deposit(int accountNr, decimal amount)
+        {
+            foreach (var customer in GetAllCustomers())
+            {
+                foreach (var account in customer.AccountList)
+                {
+                    if (account.AccountNumber == accountNr)
+                    {
+                        account.Balance += amount;
+                        return;
+                    }
+                }
+            }
+        }
 
-        //public List<Account> GetAccountsForCurrentCustomer(int currentId)
-        //{
-        //    int id = currentId;
-        //    List<Account> accountList = new List<Account>();
-
-        //    switch (id)
-        //    {
-        //        case 1:
-        //            accountList.Add(new Account { Id = 1, Balance = 2000, Owner = })
-        //    }
-        //    int caseSwitch = 1;
-
-        //    switch (caseSwitch)
-        //    {
-        //        case 1:
-        //            Console.WriteLine("Case 1");
-        //            break;
-        //        case 2:
-        //            Console.WriteLine("Case 2");
-        //            break;
-        //        default:
-        //            Console.WriteLine("Default case");
-        //            break;
-        //    }
-        //}
+        public bool Withdrawal(int accountNr, decimal amount)
+        {
+            foreach (var customer in GetAllCustomers())
+            {
+                foreach (var account in customer.AccountList)
+                {
+                    if (account.AccountNumber == accountNr)
+                    {
+                        if (account.Balance >= amount)
+                        {
+                            account.Balance -= amount;
+                            return true;
+                        }
+                        return false;
+                    }
+                }
+            }
+            return false;
+        }
     }
 }
