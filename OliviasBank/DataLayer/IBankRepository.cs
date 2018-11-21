@@ -9,5 +9,7 @@ namespace OliviasBank.DataLayer
     public interface IBankRepository
     {
         List<Customer> GetAllCustomers();
+
+        bool SaveAccount(int currentAccountNo);
     }
 }

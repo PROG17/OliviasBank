@@ -70,5 +70,10 @@ namespace OliviasBank.DataLayer
 
             return _allCustomers;
         }
+
+        public bool SaveAccount(int currentAccountNo)
+        {
+            return true;
+        }
     }
 }

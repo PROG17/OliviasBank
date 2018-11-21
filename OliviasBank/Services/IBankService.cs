@@ -7,7 +7,7 @@ namespace OliviasBank.Services
 {
     public interface IBankService
     {
-        void Deposit(int accountNo, decimal amountToDeposit);
+        decimal Deposit(int accountNo, decimal amountToDeposit);
 
         bool Withdrawal(int accountNr, decimal amount);
     }

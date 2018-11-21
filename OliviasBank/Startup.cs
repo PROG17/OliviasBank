@@ -48,9 +48,9 @@ namespace OliviasBank
             {
                 routes.MapRoute(
                     name: "default",
-                    //template: "{controller=Home}/{action=Index}/{id?}");
-                    template: "{controller=Bank}/{action=Index}/{id?}");
-        });
+                    template: "{controller=Home}/{action=Index}/{id?}");
+                //template: "{controller=Bank}/{action=Index}/{id?}");
+            });
         }
     }
 }

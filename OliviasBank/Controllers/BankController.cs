@@ -18,9 +18,10 @@ namespace OliviasBank.Controllers
             _bankService = bankService;
         }
 
-        public IActionResult Index(IndexViewModel viewModel)
+        public IActionResult Index()
         {
-            return View();
+            IndexViewModel viewModel = new IndexViewModel();
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -37,15 +38,31 @@ namespace OliviasBank.Controllers
             //        Balance = viewModel.Balance
             //    });
             //}
-            _bankService.Deposit(viewModel.AccountNo, viewModel.Amount);
 
+            //bool depositSucceeded = _bankService.Deposit(viewModel.AccountNo, viewModel.Amount);
+            decimal newBalance = _bankService.Deposit(viewModel.AccountNo, viewModel.Amount);
+
+            ViewBag.Message = ("You have successfully made a deposit!");
 
             return View(nameof(Index), new IndexViewModel
             {
                 AccountNo = viewModel.AccountNo,
                 Amount = viewModel.Amount,
-                Balance = viewModel.Balance
+                Balance = newBalance
             });
+            //if (depositSucceeded == true)
+            //{
+            //    ViewBag.Message = ("You have successfully made a deposit!");
+
+            //    return View(nameof(Index), new IndexViewModel
+            //    {
+            //        AccountNo = viewModel.AccountNo,
+            //        Amount = viewModel.Amount,
+            //        Balance = viewModel.Balance,
+            //    });
+            //}
+
+            return View();
         }
 
         public IActionResult Withrawal(IndexViewModel viewModel)

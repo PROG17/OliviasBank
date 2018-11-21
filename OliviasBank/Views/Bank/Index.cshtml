@@ -6,7 +6,7 @@
 
 <h2>Index</h2>
 
-<form asp-controller="Bank" asp-action="Index" method="post">
+<form asp-controller="Bank">
     <div class="form-group col-md-4">
         <div>
             <label asp-for="AccountNo">Account no: </label>
@@ -18,7 +18,7 @@
         </div>
         <div>
             <label asp-for="Balance">Balance: </label>
-            <input asp-for="Balance" type="number" class="form-control">
+            <input asp-for="Balance" value="@Model.Balance" type="number" class="form-control">
         </div>
         <div>
             <input type="submit" value="Deposit" formaction="/bank/deposit" />
@@ -26,3 +26,7 @@
         </div>
     </div>
 </form>
+
+<br>
+<br />
+<h2>@ViewBag.Message</h2>
