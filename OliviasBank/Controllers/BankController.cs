@@ -67,6 +67,25 @@ namespace OliviasBank.Controllers
 
         public IActionResult Withrawal(IndexViewModel viewModel)
         {
+            bool depositSucceded = _bankService.Withdrawal(viewModel.AccountNo, viewModel.Amount);
+
+            if (depositSucceded == true)
+            {
+                Account currentAccount = _bankRepository.GetAccountById(viewModel.AccountNo);
+                ViewBag.Message = ("You have successfully made a withdrawal!");
+
+                return View(nameof(Index), new IndexViewModel
+                {
+                    AccountNo = viewModel.AccountNo,
+                    Amount = viewModel.Amount,
+                    Balance = currentAccount.Balance
+                });
+            }
+            else
+            {
+                ViewBag.Message = ("Withdrawal has not succeeded!");
+            }
+
             return View();
         }
     }
