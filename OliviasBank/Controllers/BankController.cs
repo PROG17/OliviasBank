@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using OliviasBank.DataLayer;
+using OliviasBank.Models.BankModels;
 using OliviasBank.Services;
 using OliviasBank.ViewModels.BankViewModels;
 
@@ -12,10 +13,13 @@ namespace OliviasBank.Controllers
     public class BankController : Controller
     {
         private readonly IBankService _bankService;
+        private readonly IBankRepository _bankRepository;
 
-        public BankController(IBankService bankService)
+        public BankController(IBankService bankService,
+                              IBankRepository bankRepository)
         {
             _bankService = bankService;
+            _bankRepository = bankRepository;
         }
 
         public IActionResult Index()
@@ -39,17 +43,21 @@ namespace OliviasBank.Controllers
             //    });
             //}
 
-            //bool depositSucceeded = _bankService.Deposit(viewModel.AccountNo, viewModel.Amount);
-            decimal newBalance = _bankService.Deposit(viewModel.AccountNo, viewModel.Amount);
+            bool depositSucceded = _bankService.Deposit(viewModel.AccountNo, viewModel.Amount);
 
-            ViewBag.Message = ("You have successfully made a deposit!");
-
-            return View(nameof(Index), new IndexViewModel
+            if (depositSucceded == true)
             {
-                AccountNo = viewModel.AccountNo,
-                Amount = viewModel.Amount,
-                Balance = newBalance
-            });
+                Account currentAccount = _bankRepository.GetAccountById(viewModel.AccountNo);
+                ViewBag.Message = ("You have successfully made a deposit!");
+
+                return View(nameof(Index), new IndexViewModel
+                {
+                    AccountNo = viewModel.AccountNo,
+                    Amount = viewModel.Amount,
+                    Balance = currentAccount.Balance
+                });
+            }
+            
             //if (depositSucceeded == true)
             //{
             //    ViewBag.Message = ("You have successfully made a deposit!");

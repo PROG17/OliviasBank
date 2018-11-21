@@ -16,7 +16,7 @@ namespace OliviasBank.Services
             _bankRepository = bankRepository;
         }
 
-        public decimal Deposit(int accountNo, decimal amountToDeposit)
+        public bool Deposit(int accountNo, decimal amountToDeposit)
         {
             List<Customer> allCustomers = _bankRepository.GetAllCustomers();
             bool depositSucceeded = false;
@@ -30,12 +30,12 @@ namespace OliviasBank.Services
                         account.Balance += amountToDeposit;
                         depositSucceeded = _bankRepository.SaveAccount(accountNo);
 
-                        return account.Balance;
+                        return depositSucceeded;
                     }
                 }
             }
 
-            return 0;
+            return depositSucceeded;
         }
 
         public bool Withdrawal(int accountNr, decimal amount)

@@ -75,5 +75,21 @@ namespace OliviasBank.DataLayer
         {
             return true;
         }
+
+        public Account GetAccountById(int currentAccountNo)
+        {
+            foreach (var customer in _allCustomers)
+            {
+                foreach (var account in customer.AccountList)
+                {
+                    if (account.AccountNumber == currentAccountNo)
+                    {
+                        return account;
+                    }
+                }
+            }
+
+            return new Account();
+        }
     }
 }

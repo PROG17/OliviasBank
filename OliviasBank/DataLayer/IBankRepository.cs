@@ -10,6 +10,8 @@ namespace OliviasBank.DataLayer
     {
         List<Customer> GetAllCustomers();
 
+        Account GetAccountById(int currentAccountNo);
+
         bool SaveAccount(int currentAccountNo);
     }
 }
