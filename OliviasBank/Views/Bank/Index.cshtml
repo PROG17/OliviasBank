@@ -1,0 +1,28 @@
+﻿@model OliviasBank.ViewModels.BankViewModels.IndexViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<form asp-controller="Bank" asp-action="Index" method="post">
+    <div class="form-group col-md-4">
+        <div>
+            <label asp-for="AccountNo">Account no: </label>
+            <input asp-for="AccountNo" type="number" class="form-control">
+        </div>
+        <div>
+            <label asp-for="Amount">Amount: </label>
+            <input asp-for="Amount" type="number" class="form-control">
+        </div>
+        <div>
+            <label asp-for="Balance">Balance: </label>
+            <input asp-for="Balance" type="number" class="form-control">
+        </div>
+        <div>
+            <input type="submit" value="Deposit" formaction="/bank/deposit" />
+            <input type="submit" value="Withdrawal" formaction="/bank/withrawal" />
+        </div>
+    </div>
+</form>

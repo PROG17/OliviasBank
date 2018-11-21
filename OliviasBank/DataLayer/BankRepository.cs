@@ -70,40 +70,5 @@ namespace OliviasBank.DataLayer
 
             return _allCustomers;
         }
-
-        public void Deposit(int accountNo, decimal amountToDeposit)
-        {
-            foreach (var customer in GetAllCustomers())
-            {
-                foreach (var account in customer.AccountList)
-                {
-                    if (account.AccountNumber == accountNo)
-                    {
-                        account.Balance += amountToDeposit;
-                        return;
-                    }
-                }
-            }
-        }
-
-        public bool Withdrawal(int accountNr, decimal amount)
-        {
-            foreach (var customer in GetAllCustomers())
-            {
-                foreach (var account in customer.AccountList)
-                {
-                    if (account.AccountNumber == accountNr)
-                    {
-                        if (account.Balance >= amount)
-                        {
-                            account.Balance -= amount;
-                            return true;
-                        }
-                        return false;
-                    }
-                }
-            }
-            return false;
-        }
     }
 }

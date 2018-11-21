@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OliviasBank.DataLayer;
+using OliviasBank.Services;
 
 namespace OliviasBank
 {
@@ -24,6 +25,7 @@ namespace OliviasBank
         {
             services.AddMvc();
 
+            services.AddScoped<IBankService, BankService>();
             services.AddScoped<IBankRepository, BankRepository>();
         }
 
@@ -46,8 +48,9 @@ namespace OliviasBank
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+                    //template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Bank}/{action=Index}/{id?}");
+        });
         }
     }
 }

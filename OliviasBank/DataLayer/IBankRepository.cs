@@ -9,7 +9,5 @@ namespace OliviasBank.DataLayer
     public interface IBankRepository
     {
         List<Customer> GetAllCustomers();
-
-        //void Deposit(int accountNo, decimal amountToDeposit);
     }
 }

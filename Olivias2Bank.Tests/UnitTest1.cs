@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OliviasBank.DataLayer;
 using OliviasBank.Models.BankModels;
+using OliviasBank.Services;
 using System.Linq;
 
 namespace Olivias2Bank.Tests
@@ -12,6 +13,8 @@ namespace Olivias2Bank.Tests
         public void AfterDepositAccountShouldHaveUpdateBalanceTest()
         {
             BankRepository bankRepository = new BankRepository();
+            BankService bankService = new BankService(bankRepository);
+
             Customer oneCustomer = bankRepository.GetAllCustomers().First();
             Account account = oneCustomer.AccountList.First();
             
@@ -21,7 +24,7 @@ namespace Olivias2Bank.Tests
             decimal expectedResult = currentBalance + amount;
 
             //Act
-            bankRepository.Deposit(account.AccountNumber, amount);
+            bankService.Deposit(account.AccountNumber, amount);
 
             //Assert
             var result = account.Balance;
@@ -32,6 +35,8 @@ namespace Olivias2Bank.Tests
         public void AfterWithrawalAccountShouldHaveUpdatedBalanceTest()
         {
             BankRepository bankRepository = new BankRepository();
+            BankService bankService = new BankService(bankRepository);
+
             Customer oneCustomer = bankRepository.GetAllCustomers().First();
             Account account = oneCustomer.AccountList.First();
 
@@ -41,7 +46,7 @@ namespace Olivias2Bank.Tests
             decimal expectedResult = currentBalance - amount;
 
             //Act
-            bankRepository.Withdrawal(account.AccountNumber, amount);
+            bankService.Withdrawal(account.AccountNumber, amount);
 
             //Assert
             var result = account.Balance;
@@ -53,13 +58,15 @@ namespace Olivias2Bank.Tests
         {
             //Arrange
             BankRepository bankRepository = new BankRepository();
+            BankService bankService = new BankService(bankRepository);
+
             Customer oneCustomer = bankRepository.GetAllCustomers().First();
             Account account = oneCustomer.AccountList.First();
             decimal amount = 100;
             decimal expectedResult = account.Balance;
 
             //Act
-            bankRepository.Withdrawal(account.AccountNumber, account.Balance + amount);
+            bankService.Withdrawal(account.AccountNumber, account.Balance + amount);
 
             //Assert
             decimal result = account.Balance;
