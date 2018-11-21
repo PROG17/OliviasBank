@@ -57,18 +57,10 @@ namespace OliviasBank.Controllers
                     Balance = currentAccount.Balance
                 });
             }
-            
-            //if (depositSucceeded == true)
-            //{
-            //    ViewBag.Message = ("You have successfully made a deposit!");
-
-            //    return View(nameof(Index), new IndexViewModel
-            //    {
-            //        AccountNo = viewModel.AccountNo,
-            //        Amount = viewModel.Amount,
-            //        Balance = viewModel.Balance,
-            //    });
-            //}
+            else
+            {
+                ViewBag.Message = ("Deposit has not succeeded!");
+            }
 
             return View();
         }
