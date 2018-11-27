@@ -57,12 +57,12 @@ namespace OliviasBank.Controllers
                     Balance = currentAccount.Balance
                 });
             }
-            else
-            {
-                ViewBag.Message = ("Deposit has not succeeded!");
-            }
+            //else
+            //{
+            //    ViewBag.Message = ("Deposit has not succeeded!");
+            //}
 
-            return View();
+            return RedirectToAction("Index", new { message = "AccountNo doesnt exist. Deposit has not succeeded" });
         }
 
         public IActionResult Withrawal(IndexViewModel viewModel)
