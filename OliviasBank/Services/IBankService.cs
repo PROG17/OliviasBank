@@ -10,5 +10,7 @@ namespace OliviasBank.Services
         bool Deposit(int accountNo, decimal amountToDeposit);
 
         bool Withdrawal(int accountNr, decimal amount);
+
+        bool Transfer(int fromAccountId, int toAccountId, decimal sum, out string message);
     }
 }
