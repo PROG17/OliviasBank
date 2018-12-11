@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using OliviasBank.DataLayer;
 using OliviasBank.Models.BankModels;
 using OliviasBank.Services;
+using OliviasBank.ViewModels;
 using OliviasBank.ViewModels.BankViewModels;
 
 namespace OliviasBank.Controllers
@@ -87,6 +88,36 @@ namespace OliviasBank.Controllers
             ViewBag.Message = ("Withdrawal has not succeeded!");
 
             return View("Index", viewModel);
+        }
+
+        [HttpGet]
+        public IActionResult Transfer()
+        {
+            return View(new TransferViewModel());
+        }
+
+        public IActionResult Transfer(TransferViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                var isSuccess = _bankService.Transfer(vm.FromAccountId, vm.ToAccountId, vm.Sum, out string message);
+
+                if (isSuccess)
+                {
+                    vm.Message = message;
+                    vm.ToAccountBalance = _bankRepository.GetAccountById(vm.ToAccountId).Balance;
+                    vm.FromAccountBalance = _bankRepository.GetAccountById(vm.FromAccountId).Balance;
+                    return View(vm);
+                }
+                else
+                {
+                    vm.Message = message;
+                    vm.ToAccountBalance = 0;
+                    vm.FromAccountBalance = 0;
+                }
+
+            }
+            return View(vm);
         }
     }
 }
